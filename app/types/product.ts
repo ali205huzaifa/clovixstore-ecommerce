@@ -6,7 +6,7 @@ export const products = [
     price: 10,
     description:
       "A beautifully designed pot perfect for home decor or indoor plants.",
-    img: "/images/img1.jpg",
+    img: "/images/img1.webp",
     category: "Showpiece",
     createdAt: "2024-01-12",
   },
@@ -17,17 +17,17 @@ export const products = [
     price: 20,
     description:
       "A small, elegant table with artistic designs, ideal for display or functional use.",
-    img: "/images/img2.jpg",
+    img: "/images/img6.jpg",
     category: "Showpiece",
   },
   {
     id: 3,
-    name: "Dual Vase",
+    name: "Designer Vase",
     slug: "dual-Vase",
     price: 30,
     description:
       "A fantastically designed dual vase, ideal for giving gifts to loved Ones.",
-    img: "/images/img4.jpg",
+    img: "/images/img5.jpg",
     category: "Showpiece",
   },
 ];
