@@ -61,7 +61,7 @@ function PaymentForm({
     try {
       // Step 1: Create Payment Intent
       const paymentIntentResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/order/payment-intent`,
+        `/api/proxy/order/payment-intent`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -162,9 +162,7 @@ function PaymentForm({
 
     const checkStatus = async () => {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/order/${id}`
-        );
+        const response = await fetch(`/api/proxy/order/${id}`);
         const data = await response.json();
 
         if (data.data.paymentStatus === "paid") {

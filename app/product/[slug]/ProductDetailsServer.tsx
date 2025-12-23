@@ -19,9 +19,7 @@ export default function ProductDetailsServer({
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/product/slug/${slug}`
-        );
+        const res = await fetch(`/api/proxy/product/slug/${slug}`);
 
         if (!res.ok) {
           throw new Error("Failed to fetch product");

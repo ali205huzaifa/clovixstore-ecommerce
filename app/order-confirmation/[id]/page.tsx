@@ -18,9 +18,7 @@ export default function OrderConfirmation({ params }: OrderDetailsPage) {
       setOrderId(id);
 
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/order/${id}`
-        );
+        const response = await fetch(`/api/proxy/order/${id}`);
         const data = await response.json();
 
         if (data.success) {

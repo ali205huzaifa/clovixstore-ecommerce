@@ -13,9 +13,7 @@ export default function ProductsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/product`
-        );
+        const res = await fetch(`/api/proxy/product`);
 
         if (!res.ok) {
           throw new Error("Failed to fetch products");
