@@ -1,5 +1,3 @@
-"use client";
-
 import ClovixContact from "./about/components/ClovixContact";
 import AboutCustomers from "./about/components/ClovixCustomers";
 import ClovixFaqs from "./about/components/ClovixFaqs";

@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import ProductCard from "../components/common/ProductCard";
-import { Product } from "../types/product";
+import ProductCard from "@/app/components/common/ProductCard";
+import { Product } from "@/app/types/product";
 
-export default function ProductsPage() {
+export default function MoreProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -47,35 +47,32 @@ export default function ProductsPage() {
 
   if (loading) {
     return (
-      <section className="w-full bg-white py-6 px-4">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-gray-500">Loading products...</p>
-        </div>
-      </section>
+      <div className="mt-12">
+        <p className="text-primary text-2xl font-medium mb-6">More Products</p>
+        <p className="text-center text-gray-500">Loading products...</p>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <section className="w-full bg-white py-6 px-4">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-red-500">{error}</p>
-        </div>
-      </section>
+      <div className="mt-12">
+        <p className="text-primary text-2xl font-medium mb-6">More Products</p>
+        <p className="text-center text-red-500">{error}</p>
+      </div>
     );
   }
 
   return (
-    <section className="w-full bg-white py-6 px-4">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((p) => (
-            <Link key={p.id} href={`/product/${p.slug}`}>
-              <ProductCard product={p} />
-            </Link>
-          ))}
-        </div>
+    <div className="my-8">
+      <p className="text-primary text-2xl font-medium mb-6">More Products</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {products.map((p) => (
+          <Link key={p.id} href={`/product/${p.slug}`}>
+            <ProductCard product={p} />
+          </Link>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }
