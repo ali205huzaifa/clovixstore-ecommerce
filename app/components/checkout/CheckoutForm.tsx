@@ -83,6 +83,9 @@ function PaymentForm({
             email: formData.email,
             phone: formData.phone,
             orderNotes: formData.orderNotes,
+            description: `Order for ${cart
+              .map((item: any) => `${item.name} (x${item.quantity})`)
+              .join(", ")}`,
           }),
         }
       );
@@ -141,14 +144,10 @@ function PaymentForm({
       setOrderId(id);
       localStorage.removeItem("cart");
       window.location.href = `/order-confirmation/${id}`;
-    } else if (status === "requires_action") {
-      setError("Payment requires authentication. Please complete the process.");
-      pollOrderStatus(id);
     } else if (status === "processing") {
-      setError("Payment is being processed. Please wait...");
       pollOrderStatus(id);
     } else {
-      setError("Payment failed. Please try again.");
+      setError("Payment failed or was cancelled.");
     }
     setLoading(false);
   };
