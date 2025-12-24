@@ -59,7 +59,6 @@ function PaymentForm({
     setError(null);
 
     try {
-      // Step 1: Create Payment Intent
       const paymentIntentResponse = await fetch(
         `/api/proxy/order/payment-intent`,
         {
@@ -94,8 +93,8 @@ function PaymentForm({
       }
 
       const paymentData = await paymentIntentResponse.json();
-      const newOrderId = paymentData.order._id;
-      const clientSecret = paymentData.payment.clientSecret;
+      const newOrderId = paymentData.data.order._id;
+      const clientSecret = paymentData.data.payment.clientSecret;
 
       if (!clientSecret || !newOrderId) {
         throw new Error("Failed to get client secret or order ID");
@@ -103,7 +102,6 @@ function PaymentForm({
 
       setOrderId(newOrderId);
 
-      // Step 2: Confirm Card Payment
       const cardElement = elements.getElement(CardElement);
       if (!cardElement) {
         throw new Error("Card element not found");
@@ -130,7 +128,6 @@ function PaymentForm({
         throw new Error("Payment intent not returned");
       }
 
-      // Step 3: Handle Payment Result
       handlePaymentResult(paymentIntent.status, newOrderId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
